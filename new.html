@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>Shuffle Lines</nav>
+
+    <div class="container">
+
+        <div class="container_one">
+            <center><img src="p1.jpg" width="140px" alt=""></center>
+            <textarea placeholder="Type or paste your lines" oninput="count_length()" name="" id=""></textarea>
+            
+            <span id="container_one_copy_text"></span>
+        </div>
+
+
+
+
+        <div class="container_two">
+            <center><img src="p2.jpg" width="140px" alt=""></center>
+            <div id="output"></div>
+          
+            <!-- <input onclick="go()" type="button" value="copy to clipboard"> -->
+            <span id="container_two_copy_text"></span>
+        </div>
+
+    </div>
+
+      <center><button onclick="count_length()" class="shuffle_button" id="btn">Re-Shuffle</button></center>
+    <script>
+
+
+        function copied_div(){
+            let div = document.getElementById("output");
+
+           let get_copied =   navigator.clipboard.writeText(div.innerHTML);
+       
+        }
+        
+  
+
+        let count_length = () => {
+            let textarea = document.querySelector("textarea");
+
+           
+
+            let a = textarea.value.split("\n")
+           
+
+
+            function shuffle(listing) {
+                for (let i = listing.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [listing[i], listing[j]] = [listing[j], listing[i]];
+
+                }
+                return listing
+            }
+
+            // console.log(shuffle(a))
+            let convert = shuffle(a)
+            let print_convert = ""
+            for (let p = 0; p < convert.length; p++) {
+                print_convert += convert[p] + "<br>";
+
+            }
+            document.getElementById("output").innerHTML = print_convert
+           }
+    </script>
+</body>
+
+</html>
